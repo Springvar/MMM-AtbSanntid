@@ -11,8 +11,8 @@
             <tr>
                 <td class="line">{{ r.LineName }}</td>
                 <td class="time">{{ r.Time }}</td>
-                <td class="destination">{{ r.Destination | replace("%20", " ") }}</td>
-                <td class="stopName">{{ r.custName | replace("%20", " ") }}</td>
+                <td class="destination">{{ r.Destination }}</td>
+                <td class="stopName">{{ r.custName }}</td>
             </tr>
         {% endfor %}
         </tbody>

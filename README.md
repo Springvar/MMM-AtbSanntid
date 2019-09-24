@@ -31,7 +31,7 @@ Find your location using the configuration form at <a href="http://st.atb.no/New
 	<tr>
 		<td>stops</td>
 		<td>List of stops to list departures from.</td>
-		<td>[{id: 16010011, name: "Nidarosdomen", direction: 1, lines: ''}]</td>
+		<td>[{id: 16010011, name: "Nidarosdomen", lines: ''}]</td>
 	</tr>
 	<tr>
 		<td>updateInterval</td>

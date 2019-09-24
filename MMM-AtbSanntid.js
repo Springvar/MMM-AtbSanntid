@@ -3,7 +3,7 @@ Module.register("MMM-AtbSanntid",{
 		lang: "no",
 		initialLoadDelay: 1000,
 		updateInterval: 60000,
-		stops: [{id: 16010011, name: "Nidarosdomen", direction: 1, lines: ''}],
+		stops: [{id: 16010011, name: "Nidarosdomen", lines: ''}],
 		rows: 7
 	},
 

@@ -10,10 +10,10 @@ class ATB {
 
     stopsToQueryParam(stops) {
 		return stops.map((terminal) => [
-			terminal.direction,
+			1,
 			terminal.id,
 			terminal.lines,
-			encodeURIComponent(terminal.name)
+			terminal.name
 		].join(',')).join('|');
     }
 
@@ -22,14 +22,16 @@ class ATB {
             rows = rows || 5;
             visMode = visMode || 2;
 
+            const formData = {
+                terminal: this.stopsToQueryParam(stops),
+                rows: rows,
+                visMode: visMode
+            };
+
             const options = {
                 url: this.minskjermApi,
                 method: 'POST',
-                form: {
-                    terminal: this.stopsToQueryParam(stops),
-                    rows: rows,
-                    visMode: visMode
-                }
+                form: formData
             };
 
             try {
@@ -39,6 +41,7 @@ class ATB {
                     } else {
                         reject({
                             error: error,
+                            formData: formData,
                             status: response ? response.statusCode : 0
                         });
                     }
