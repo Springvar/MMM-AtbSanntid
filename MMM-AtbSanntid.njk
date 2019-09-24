@@ -1,0 +1,24 @@
+{% if departures %}
+    <table class="{{ config.tableClass }}">
+        <thead class="small align-left">
+            <th class="line">{{ "Line" | translate }}</th>
+            <th class="time">{{ "Departure" | translate }}</th>
+            <th class="destination">{{ "Destination" | translate }}</th>
+            <th class="stopName">{{ "Stop" | translate }}</th>
+        </thead>
+        <tbody class="small light align-left">
+        {% for r in departures %}
+            <tr>
+                <td class="line">{{ r.LineName }}</td>
+                <td class="time">{{ r.Time }}</td>
+                <td class="destination">{{ r.Destination | replace("%20", " ") }}</td>
+                <td class="stopName">{{ r.custName | replace("%20", " ") }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="dimmed light small">
+        {{ "LOADING" | translate | safe }}
+    </div>
+{% endif %}
