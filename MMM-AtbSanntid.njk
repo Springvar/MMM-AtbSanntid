@@ -1,18 +1,27 @@
 {% if departures %}
     <table class="{{ config.tableClass }}">
-        <thead class="small align-left">
-            <th class="line">{{ "Line" | translate }}</th>
-            <th class="time">{{ "Departure" | translate }}</th>
-            <th class="destination">{{ "Destination" | translate }}</th>
-            <th class="stopName">{{ "Stop" | translate }}</th>
+        {% if config.showHeaders -%}
+        <thead class="{{config.headerClass }}">
+            <th class="line" {{ config.thAttribs | safe }}>{{ config.lineHeader }}</th>
+            <th class="time" {{ config.thAttribs | safe }}>{{ config.departureHeader }}</th>
+            <th class="destination" {{ config.thAttribs | safe }}>{{ config.destinationHeader }}</th>
+            <th class="stopName" {{ config.thAttribs | safe }}>{{ config.stopHeader }}</th>
         </thead>
-        <tbody class="small light align-left">
+        {%- endif %}
+        <tbody class="{{ config.bodyClass }}">
         {% for r in departures %}
-            <tr>
-                <td class="line">{{ r.LineName }}</td>
-                <td class="time">{{ r.Time }}</td>
-                <td class="destination">{{ r.Destination }}</td>
-                <td class="stopName">{{ r.custName }}</td>
+            <tr class="
+            {%- if loop.index0 / (loop.length-1) <= config.topPercentileCutoff -%}
+                {{ config.topPercentileClass }}
+            {%- elif loop.index0 / (loop.length-1) >= config.bottomPercentileCutoff -%}
+                {{ config.bottomPercentileClass }}
+            {%- endif %}" {% if config.opacityFadeout -%}
+                style="opacity:{{ ((loop.revindex0 / (loop.length-1))*(1-config.opacityLow) ) + config.opacityLow }};"
+            {%- endif %}>
+                <td class="line" {{ config.tdAttribs | safe }}>{% if config.showIcon %}<span class="fa fa-bus"></span>&nbsp;{% endif %}{{ r.LineName }}</td>
+                <td class="time" {{ config.tdAttribs | safe }}>{{ r.Time }}</td>
+                <td class="destination" {{ config.tdAttribs | safe }}>{% if config.truncateDestination %}{{ r.Destination | truncate(config.truncateDestination) }}{% else %}{{ r.Destination }}{% endif %}</td>
+                <td class="stopName" {{ config.tdAttribs | safe }}>{{ r.custName }}</td>
             </tr>
         {% endfor %}
         </tbody>

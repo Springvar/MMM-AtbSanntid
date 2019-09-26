@@ -4,7 +4,24 @@ Module.register("MMM-AtbSanntid",{
 		initialLoadDelay: 1000,
 		updateInterval: 60000,
 		stops: [{id: 16010011, name: "Nidarosdomen", lines: ''}],
-		rows: 7
+		rows: 10,
+		tableClass: '',
+		headerClass: 'small align-left',
+		bodyClass: 'small light align-left',
+		cellPadding: '0px 7px',
+		showIcon: true,
+		topPercentileClass: 'bright',
+		topPercentileCutoff: '0.3',
+		bottomPercentileClass: 'dimmed',
+		bottomPercentileCutoff: '0.8',
+		opacityFadeout: true,
+		opacityLow: 0.5,
+		showHeaders: true,
+		lineHeader: 'Line',
+		departureHeader: 'Departure',
+		destinationHeader: 'Destination',
+		stopHeader: 'Stop',
+		truncateDestination: false
 	},
 
 	start: function() {
@@ -22,7 +39,6 @@ Module.register("MMM-AtbSanntid",{
 			: this.config.updateInterval;
 
 		setTimeout(() => {
-			Log.info("REQUEST ATBSANNTID DATA");
 			this.sendSocketNotification('GET_ATBSANNTID_DATA', {
 				updateInterval: this.config.updateInterval,
 				lang: this.config.lang,
@@ -63,11 +79,22 @@ Module.register("MMM-AtbSanntid",{
 	},
 
 	getTemplateData: function() {
+		this.config.thAttribs = 'style="padding:'+this.config.cellPadding+'"';
+		this.config.tdAttribs = 'style="padding:'+this.config.cellPadding+'"';
+
+		this.config.lineHeader = this.translate(this.config.lineHeader);
+		this.config.departureHeader = this.translate(this.config.departureHeader);
+		this.config.destinationHeader = this.translate(this.config.destinationHeader);
+		this.config.stopHeader = this.translate(this.config.stopHeader);
+
 		return {
 			config: this.config,
 			departures: this.departures,
 			error: this.error
 		};
+	},
+
+	getStyles: function() {
+		return ['font-awesome.css'];
 	}
 });
-
