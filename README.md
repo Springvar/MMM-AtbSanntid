@@ -30,8 +30,8 @@ Find your location using the configuration form at <a href="http://st.atb.no/New
 	</tr>
 	<tr>
 		<td>stops</td>
-		<td>List of stops to list departures from.</td>
-		<td>[{id: 16010011, name: "Nidarosdomen", lines: ''}]</td>
+		<td>List of stops to list departures from. Line setting is options. Leave empty or remove to include all lines.</td>
+		<td>[{id: 16010011, name: "Nidarosdomen", line: '1'}]</td>
 	</tr>
 	<tr>
 		<td>updateInterval</td>

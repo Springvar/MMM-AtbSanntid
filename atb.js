@@ -9,11 +9,11 @@ class ATB {
     }
 
     stopsToQueryParam(stops) {
-		return stops.map((terminal) => [
+		return stops.map((stop) => [
 			1,
-			terminal.id,
-			terminal.lines,
-			terminal.name
+			stop.id,
+			stop.line,
+			stop.name
 		].join(',')).join('|');
     }
 
