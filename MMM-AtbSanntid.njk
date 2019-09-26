@@ -11,9 +11,9 @@
         <tbody class="{{ config.bodyClass }}">
         {% for r in departures %}
             <tr class="
-            {%- if loop.index0 / (loop.length-1) <= config.topPercentileCutoff -%}
+            {%- if loop.index0 / (loop.length-1) < config.topPercentileCutoff -%}
                 {{ config.topPercentileClass }}
-            {%- elif loop.index0 / (loop.length-1) >= config.bottomPercentileCutoff -%}
+            {%- elif loop.index0 / (loop.length-1) > config.bottomPercentileCutoff -%}
                 {{ config.bottomPercentileClass }}
             {%- endif %}" {% if config.opacityFadeout -%}
                 style="opacity:{{ ((loop.revindex0 / (loop.length-1))*(1-config.opacityLow) ) + config.opacityLow }};"
