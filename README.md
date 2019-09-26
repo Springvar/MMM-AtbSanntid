@@ -1,6 +1,8 @@
 # MagicMirror² Module: MMM-AtbSanntid
 This is an unofficial module for the MagicMirror project showing departure times from the public transport service in Trøndelag, Norway - [AtB](https://www.atb.no/)
 
+![Screenshot of module](screenshot.png)
+
 ## How to install
 
 Remote into your Magic Mirror box using a terminal software and go to the modules folder:
