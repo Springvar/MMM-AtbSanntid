@@ -20,7 +20,7 @@
             {%- endif %}>
                 <td class="line" {{ config.tdAttribs | safe }}>{% if config.showIcon %}<span class="fa fa-bus"></span>&nbsp;{% endif %}{{ r.LineName }}</td>
                 <td class="time" {{ config.tdAttribs | safe }}>{{ r.Time }}</td>
-                <td class="destination" {{ config.tdAttribs | safe }}>{% if config.truncateDestination %}{{ r.Destination | truncate(config.truncateDestination) }}{% else %}{{ r.Destination }}{% endif %}</td>
+                <td class="destination" {{ config.tdAttribs | safe }}>{% if config.truncateDestination %}{{ r.Destination | truncate(config.truncateDestination, true) }}{% else %}{{ r.Destination }}{% endif %}</td>
                 <td class="stopName" {{ config.tdAttribs | safe }}>{{ r.custName }}</td>
             </tr>
         {% endfor %}
